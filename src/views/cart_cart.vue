@@ -1,29 +1,29 @@
 <template>
-    <h1>ตะกร้าสินค้า</h1>
+    <h1>Shopping Cart</h1>
  
     <table class="table">
         <thead>
             <tr>
-                <th>สินค้า</th>
-                <th>ราคา</th>
-                <th>จำนวน</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
                 <th>รวม</th>
-                <th>ลบสินค้า</th>
+                <th>Remove</th>
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(index) in 5">
+            <tr v-for="(cart, index) in carts" :key="index">
                 <td>
-                    <img src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg" alt="" class="img-thumbnail" width="100">
-                    lkdghdlk
+                    <img :src="cart.product.image" alt="" class="img-thumbnail" width="100">
+                    {{ cart.product.title }}
                 </td>
-                <td>150 บาท</td>
+                <td>$ {{ cart.product.price }}</td>
                 <td>
                     <button class="btn btn-sm btn-secondary">-</button>
-                    <span class="mx-2">1</span>
+                    <span class="mx-2">{{ cart.quantity }}</span>
                     <button class="btn btn-sm btn-secondary">+</button>
                 </td>
-                <td>1000 บาท</td>
+                <td>{{ cart.total_price }}</td>
                 <td>
                     <button class="btn btn-danger">ลบ</button>
                 </td>
@@ -33,6 +33,14 @@
 </template>
  
 <script setup>
+import { computed } from 'vue';
+
+// useCartStore
+import { useCartStore } from '../store/cart';
+const cart_store = useCartStore();
+
+const carts = computed(() => cart_store.cart_previews)
+console.log(carts)
  
 </script>
  

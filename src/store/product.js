@@ -5,7 +5,7 @@ import axios from "axios";
 import { ref, computed } from 'vue'
 
 export const useProductStore = defineStore('useProductStore', () => {
-    const products = ref({})
+    const products = ref([])
 
     const list_products = computed(() => products.value)
 
@@ -21,5 +21,5 @@ export const useProductStore = defineStore('useProductStore', () => {
         })
     } 
 
-    return { fetch_products, list_products, load_products}        
+    return { products,fetch_products, list_products, load_products}        
 })
